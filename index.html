@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GCSE PE Advent Calendar 2026</title>
+<meta name="description" content="One Edexcel GCSE PE exam question a day, 1 to 25 December.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Big+Shoulders+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pine:#0f3b2e; --pine-deep:#072219; --pine-soft:#1d5240;
+  --cranberry:#b3243b; --cranberry-deep:#7d1528;
+  --gold:#e0ae4a; --gold-deep:#a87a22;
+  --snow:#fbfaf7; --ink:#14211c;
+  --display:"Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
+  --body:"Atkinson Hyperlegible", Verdana, Arial, sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{font-family:var(--body); color:var(--snow); min-height:100vh}
+html{
+  background-color:var(--pine-deep);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.06) 0 1px, transparent 2px) 0 0/7px 7px,
+    radial-gradient(circle at 70% 60%, rgba(0,0,0,.18) 0 1px, transparent 2px) 0 0/9px 9px,
+    radial-gradient(ellipse at 50% -10%, var(--pine-soft) 0%, var(--pine) 45%, var(--pine-deep) 100%);
+  background-attachment:fixed;
+  background-color:var(--pine-deep);
+}
+#snow{position:fixed;inset:0;pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 18px 40px}
+
+/* fairy lights */
+.lights{position:relative;height:46px;margin:0 -18px;overflow:hidden}
+.lights svg{position:absolute;inset:0;width:100%;height:46px}
+.bulb{animation:twinkle 2.4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
+
+header.top{text-align:center;padding:6px 0 18px}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(2.6rem,8vw,5.2rem);line-height:.92;margin:.1em 0 .15em;letter-spacing:.01em}
+h1 .yr{display:block;color:var(--gold);font-size:.5em;letter-spacing:.06em}
+.lede{max-width:40em;margin:0 auto;font-size:1.05rem;line-height:1.5;color:#e4ece8}
+.status{display:inline-block;margin-top:14px;padding:8px 16px;border-radius:999px;background:rgba(0,0,0,.25);border:1px solid rgba(224,174,74,.55);font-weight:700}
+.teacher{display:inline-block;margin-left:8px;padding:6px 12px;border-radius:999px;background:var(--gold);color:var(--ink);font-weight:700;font-size:.85rem}
+
+/* the board of race bibs */
+.board{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(118px,auto);grid-auto-flow:dense;gap:14px;margin-top:22px}
+.cell{position:relative;perspective:900px;min-height:118px}
+.cell.w2{grid-column:span 2}
+.cell.big{grid-column:span 2;grid-row:span 2}
+.behind{position:absolute;inset:0;border-radius:8px;background:radial-gradient(circle at 50% 40%,#2b0e14,#14070a);box-shadow:inset 0 4px 14px rgba(0,0,0,.7);overflow:hidden;display:grid;place-items:center}
+.present{width:46%;aspect-ratio:1.1;position:relative;transform:translateY(8%)}
+.present .box{position:absolute;inset:22% 0 0 0;background:var(--cranberry);border-radius:3px}
+.present .lid{position:absolute;left:-5%;right:-5%;top:10%;height:18%;background:var(--cranberry-deep);border-radius:3px;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.present .rv{position:absolute;left:44%;width:12%;top:10%;bottom:0;background:var(--gold)}
+.present .rh{position:absolute;left:0;right:0;top:52%;height:12%;background:var(--gold)}
+.present .bow{position:absolute;left:30%;width:40%;top:-6%;height:20%;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.present .bow:before,.present .bow:after{content:"";position:absolute;top:0;width:48%;height:100%;border:4px solid var(--gold);border-radius:50% 50% 10% 50%}
+.present .bow:before{left:0;transform:rotate(-20deg)}
+.present .bow:after{right:0;transform:rotate(20deg) scaleX(-1)}
+.cell.lift .present .lid,.cell.lift .present .bow{transform:translateY(-70%) rotate(-12deg)}
+
+.door{position:absolute;inset:0;width:100%;border:0;padding:0;cursor:pointer;background:none;transform-origin:left center;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.6,.05,.25,1);border-radius:8px;font:inherit;color:var(--ink)}
+.door:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.bib{position:absolute;inset:0;border-radius:8px;background:var(--snow);box-shadow:0 6px 0 rgba(0,0,0,.25),0 10px 24px rgba(0,0,0,.35);overflow:hidden;display:flex;flex-direction:column;backface-visibility:hidden}
+.bib .band{height:24%;min-height:24px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;letter-spacing:.04em;color:var(--snow)}
+.bib .num{flex:1;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:clamp(2.4rem,7vw,3.6rem);line-height:1;color:var(--ink)}
+.cell.big .bib .num{font-size:clamp(4rem,12vw,7rem)}
+.bib .pin{position:absolute;width:9px;height:9px;border-radius:50%;background:#c9cfcc;box-shadow:inset 0 1px 2px rgba(0,0,0,.5)}
+.bib .pin.a{top:6px;left:7px}.bib .pin.b{top:6px;right:7px}.bib .pin.c{bottom:7px;left:7px}.bib .pin.d{bottom:7px;right:7px}
+.t-red .band{background:var(--cranberry)} .t-green .band{background:var(--pine-soft)} .t-gold .band{background:var(--gold-deep)}
+.bib .star{position:absolute;right:10px;bottom:16px;width:22px;height:22px;display:none}
+.cell.logged .bib .star{display:block}
+.frost{position:absolute;inset:0;border-radius:8px;pointer-events:none;background:linear-gradient(160deg,rgba(255,255,255,.55),rgba(214,232,240,.35));backdrop-filter:blur(1px);display:none}
+.cell.locked .frost{display:block}
+.cell.locked .bib{filter:saturate(.35)}
+.lock{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);width:18px;height:20px;display:none}
+.cell.locked .lock{display:block}
+.cell.today .bib{animation:glow 2.2s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 6px 0 rgba(0,0,0,.25),0 0 0 0 rgba(224,174,74,.0)}50%{box-shadow:0 6px 0 rgba(0,0,0,.25),0 0 26px 6px rgba(224,174,74,.75)}}
+.cell.opened .door{transform:rotateY(-28deg)}
+.cell.swing .door{transform:rotateY(-112deg)}
+.cell.shake .door{animation:shake .45s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+
+.toast{visibility:hidden;position:fixed;left:50%;bottom:22px;transform:translate(-50%,140%);background:var(--snow);color:var(--ink);padding:12px 18px;border-radius:10px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .35s;z-index:30;max-width:90vw;text-align:center}
+.toast.show{visibility:visible;transform:translate(-50%,0)}
+
+/* modal: a gift tag holding the exam paper */
+.veil{position:fixed;inset:0;background:rgba(4,16,11,.78);z-index:20;display:none;overflow-y:auto;padding:28px 12px}
+.veil.show{display:block}
+.tag{position:relative;max-width:800px;margin:0 auto;background:var(--cranberry);border-radius:18px;padding:16px 16px 20px;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:pop .45s cubic-bezier(.3,1.4,.5,1)}
+@keyframes pop{from{transform:scale(.85) translateY(30px);opacity:0}to{transform:none;opacity:1}}
+.tag:before{content:"";position:absolute;left:50%;top:-12px;width:22px;height:22px;margin-left:-11px;border-radius:50%;background:var(--pine-deep);border:4px solid var(--gold)}
+.taghead{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;padding:6px 4px 14px;color:var(--snow)}
+.taghead h2{font-family:var(--display);font-weight:900;font-size:clamp(1.7rem,5vw,2.4rem);line-height:1;margin:0}
+.taghead p{margin:.35em 0 0;color:#ffe3e8;font-size:.95rem}
+.close{flex:none;width:44px;height:44px;border-radius:50%;border:2px solid var(--snow);background:transparent;color:var(--snow);font-size:1.5rem;line-height:1;cursor:pointer}
+.close:focus-visible,.btn:focus-visible,.field input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.paper{border-radius:6px;overflow:hidden;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.under{background:var(--snow);color:var(--ink);border-radius:6px;margin-top:12px;padding:16px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:11px 18px;font:700 1rem var(--body);cursor:pointer}
+.btn.hint{background:#e6efe9;color:var(--pine)}
+.btn.go{background:var(--pine);color:var(--snow)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.hinttext{margin:12px 0 0;padding:10px 12px;border-left:4px solid var(--gold);background:#fff7e3}
+.checkin{margin-top:16px;border-top:1px dashed #b9c6bf;padding-top:14px}
+.checkin p{margin:0 0 10px;font-weight:700}
+.field{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.field label{display:block;font-size:.9rem;margin-bottom:4px;color:#3a4a43}
+.field input{font:1.05rem var(--body);padding:10px 12px;border:2px solid #9fb1a8;border-radius:10px;width:min(260px,70vw)}
+.msg{margin:10px 0 0;font-weight:700}
+.msg.err{color:var(--cranberry-deep)}
+.msg.ok{color:var(--pine)}
+.solution{margin-top:14px}
+.solution h3{font-family:var(--display);font-weight:900;font-size:1.6rem;margin:0 0 8px;color:var(--pine)}
+.loading{padding:40px;text-align:center;background:#fff;color:#333}
+.sparkle{position:fixed;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:40}
+
+footer{margin-top:34px;text-align:center;color:#bcd0c7;font-size:.88rem;line-height:1.5}
+.banner{margin:14px auto 0;max-width:34em;padding:10px 16px;border-radius:12px;background:var(--gold);color:var(--ink);font-weight:700}
+
+@media (max-width:640px){
+  .board{grid-template-columns:repeat(3,1fr);gap:10px;grid-auto-rows:minmax(104px,auto)}
+  .cell{min-height:104px}
+  .tag{padding:12px 8px 14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .door,.present .lid,.present .bow{transition:none}
+  .cell.today .bib,.bulb,.tag{animation:none}
+  .cell.swing .door{transform:none;opacity:0;transition:opacity .3s}
+}
+/* Edexcel-style exam paper panel */
+.xq{background:#fff;color:#000;font-family:Verdana,"DejaVu Sans",Arial,sans-serif;font-size:14.5px;line-height:1.55;padding:22px 22px 14px 58px;position:relative;text-align:left}
+.xq .qnum{position:absolute;left:14px;top:20px;font-weight:bold;font-size:17px;border:2px solid #000;min-width:26px;height:26px;line-height:26px;text-align:center;padding:0 3px}
+.xq p{margin:0 0 .7em}
+.xq b{font-weight:bold}
+.xq .pt{display:flex;gap:10px;margin:.9em 0 0}
+.xq .pl{font-weight:normal;min-width:2.2em;flex:none}
+.xq .pl:empty{display:none}
+.xq .pb{flex:1}
+.xq .mk{text-align:right;font-weight:bold;margin:.15em 0 .3em}
+.xq .ln span{display:block;border-bottom:1.5px dotted #777;height:1.9em;margin-left:2.6em}
+.xq .sl{margin:.4em 0 0 2.6em}
+.xq .mcqi{font-weight:bold;margin-top:1em}
+.xq table.mcq{border-collapse:collapse;margin:.2em 0 .6em 2.6em}
+.xq table.mcq td{border:1px solid #000;padding:5px 9px;vertical-align:middle}
+.xq table.mcq td.bx{font-size:18px;line-height:1;width:22px;text-align:center}
+.xq table.mcq td.ol{font-weight:bold;width:14px}
+.xq table.xt{border-collapse:collapse;margin:.6em auto .2em;max-width:100%}
+.xq table.xt th,.xq table.xt td{border:1px solid #000;padding:7px 10px;vertical-align:top;text-align:left}
+.xq table.xt th{font-weight:bold;background:#fff}
+.xq .tcap,.xq figcaption{text-align:center;font-weight:bold;margin:.2em 0 .9em}
+.xq .dots{display:inline-block;min-width:8em;border-bottom:1.5px dotted #777;height:1.3em}
+.xq figure.fig{margin:.6em 0;text-align:center}
+.xq figure.fig svg{display:block;margin:0 auto}
+.xq .tot{text-align:right;font-weight:bold;margin-top:1.2em}
+/* mark scheme */
+.msw{background:#fff;color:#000;font-family:Verdana,"DejaVu Sans",Arial,sans-serif;font-size:13.5px;line-height:1.45;padding:14px;text-align:left}
+.msw table.ms{border-collapse:collapse;width:100%;margin:0 0 10px}
+.msw table.ms th,.msw table.ms td{border:1px solid #000;padding:6px 8px;vertical-align:top;text-align:left}
+.msw table.ms th{background:#d9d9d9;font-weight:bold}
+.msw td.msq{width:4.6em;font-weight:bold}
+.msw td.msm{width:3em;text-align:center;font-weight:bold}
+.msw ul{margin:.3em 0 .4em 1.1em;padding:0}
+.msw li{margin:.15em 0}
+.msw table.lv td:first-child{white-space:nowrap;font-weight:bold}
+.msw .msn{font-style:italic}
+.msw .tip{background:#fff8d6;border-left:4px solid #c9a227;padding:8px 10px;margin:8px 0 0}
+@media (max-width:520px){.xq{padding:18px 12px 12px 46px;font-size:14px}.xq .qnum{left:8px}.xq table.mcq{margin-left:0}.xq .ln span,.xq .sl{margin-left:0}.xq table.xt th,.xq table.xt td{padding:5px 6px}}
+
+</style>
+</head>
+<body>
+<canvas id="snow" aria-hidden="true"></canvas>
+<div class="wrap">
+  <div class="lights" aria-hidden="true"><svg id="lights" preserveAspectRatio="none"></svg></div>
+  <header class="top">
+    <h1>The GCSE PE advent calendar <span class="yr">December 2026</span></h1>
+    <p class="lede">A new Edexcel-style exam question behind every door, from 1 to 25 December. Open today’s door, answer it on paper, then log your first name to unlock the mark scheme.</p>
+    <div><span class="status" id="status" role="status">Checking the calendar…</span><span class="teacher" id="teacherBadge" hidden>Teacher preview: every door open</span></div>
+    <p class="banner" id="xmas" hidden>Merry Christmas! Every door is open, so catch up on any you missed.</p>
+  </header>
+  <main>
+    <div class="board" id="board" aria-label="Advent calendar doors"></div>
+  </main>
+  <footer>
+    <p>We store your first name and the time you checked in so your teacher can see who took part. Nothing else is collected.</p>
+  </footer>
+</div>
+
+<div class="veil" id="veil" aria-hidden="true">
+  <div class="tag" role="dialog" aria-modal="true" aria-labelledby="mTitle" id="dialog">
+    <div class="taghead">
+      <div><h2 id="mTitle">Day</h2><p id="mTopic"></p></div>
+      <button class="close" id="mClose" aria-label="Close question">×</button>
+    </div>
+    <div class="paper" id="mPaper"><div class="loading">Unwrapping…</div></div>
+    <div class="under" id="mUnder" hidden>
+      <button class="btn hint" id="hintBtn" aria-expanded="false">Show hint</button>
+      <p class="hinttext" id="hintText" hidden></p>
+      <form class="checkin" id="checkin" autocomplete="off">
+        <p>Done it? Enter your first name to log this door and see the mark scheme.</p>
+        <div class="field">
+          <div><label for="nameIn">First name only (add a surname initial if you like)</label>
+          <input id="nameIn" name="name" maxlength="20" required></div>
+          <button class="btn go" id="logBtn" type="submit">Log my answer</button>
+        </div>
+        <p class="msg" id="msg" role="alert"></p>
+      </form>
+      <div class="solution msw" id="solution" hidden></div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const CONFIG = {
+  API_URL: 'https://script.google.com/macros/s/AKfycbzkmw9TlvN9wKHuELpO1dQ0iQ8xlRnjAThGouw_XWU86QXRi_sOe4j3q2Jij_-MHCus/exec',
+  YEAR: 2026
+};
+// Fixed scattered layout: [day, size, colour]
+const LAYOUT = [[14,'','t-red'],[3,'','t-green'],[22,'','t-gold'],[9,'w2','t-red'],[1,'','t-green'],
+  [25,'big','t-red'],[17,'','t-gold'],[6,'','t-green'],[11,'','t-red'],[20,'','t-green'],
+  [2,'','t-gold'],[24,'w2','t-green'],[13,'','t-red'],[8,'','t-gold'],[19,'','t-green'],
+  [5,'','t-red'],[23,'','t-gold'],[10,'','t-green'],[16,'','t-red'],[4,'','t-gold'],
+  [21,'','t-green'],[12,'','t-red'],[7,'','t-gold'],[18,'','t-red'],[15,'','t-green']];
+const KEY = new URLSearchParams(location.search).get('key') || '';
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = id => document.getElementById(id);
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem('pe-advent-'+k); return v===null?d:JSON.parse(v);}catch(e){return d;} },
+  set(k, v){ try{ localStorage.setItem('pe-advent-'+k, JSON.stringify(v)); }catch(e){} }
+};
+let unlocked = 0, today = '', current = null, lastFocus = null;
+const opened = new Set(store.get('opened', []));
+const logged = store.get('logged', {});        // day -> solution html
+
+function api(params){
+  const u = new URL(CONFIG.API_URL);
+  Object.entries(params).forEach(([k,v]) => u.searchParams.set(k, v));
+  if (KEY) u.searchParams.set('key', KEY);
+  return fetch(u.toString()).then(r => r.json());
+}
+function apiPost(body){
+  return fetch(CONFIG.API_URL, {method:'POST', body: JSON.stringify(Object.assign({key: KEY}, body))}).then(r => r.json());
+}
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const STAR = '<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z" fill="#e0ae4a" stroke="#a87a22"/></svg>';
+const LOCK = '<svg class="lock" viewBox="0 0 18 20" aria-hidden="true"><rect x="1" y="8" width="16" height="11" rx="2" fill="#3b5b4f"/><path d="M5 8V6a4 4 0 018 0v2" fill="none" stroke="#3b5b4f" stroke-width="2.4"/></svg>';
+
+function buildBoard(){
+  const b = $('board');
+  b.innerHTML = LAYOUT.map(([d,size,t]) => `
+    <div class="cell ${size}" id="c${d}" data-day="${d}">
+      <div class="behind"><div class="present"><div class="box"></div><div class="rv"></div><div class="rh"></div><div class="lid"></div><div class="bow"></div></div></div>
+      <button class="door" aria-label="Door ${d}">
+        <span class="bib ${t}"><span class="band">December</span><span class="num">${d}</span>
+          <span class="pin a"></span><span class="pin b"></span><span class="pin c"></span><span class="pin d"></span>${STAR}</span>
+        <span class="frost"></span>${LOCK}
+      </button>
+    </div>`).join('');
+  b.querySelectorAll('.door').forEach(btn => btn.addEventListener('click', e => openDoor(Number(btn.closest('.cell').dataset.day))));
+}
+function refreshCells(){
+  for (let d=1; d<=25; d++){
+    const c = $('c'+d); if (!c) continue;
+    const isLocked = d > unlocked;
+    c.classList.toggle('locked', isLocked);
+    c.classList.toggle('today', !isLocked && d === unlocked && unlocked < 25 && !logged[d] && !KEY);
+    c.classList.toggle('opened', !isLocked && opened.has(d));
+    c.classList.toggle('logged', !!logged[d]);
+    const btn = c.querySelector('.door');
+    btn.setAttribute('aria-label', isLocked ? `Door ${d}, opens on ${d} December` :
+      `Door ${d}${logged[d] ? ', logged' : opened.has(d) ? ', opened' : ', ready to open'}`);
+  }
+}
+function setStatus(){
+  const s = $('status');
+  const now = new Date();
+  if (KEY) { $('teacherBadge').hidden = false; }
+  if (unlocked === 0){
+    const start = new Date(CONFIG.YEAR, 11, 1);
+    const days = Math.max(1, Math.ceil((start - now) / 86400000));
+    s.textContent = now < start ? `Door 1 opens in ${days} day${days===1?'':'s'}` : 'The calendar opens on 1 December';
+  } else if (unlocked >= 25 && today >= `${CONFIG.YEAR}-12-25`){
+    s.textContent = 'All 25 doors are open';
+    $('xmas').hidden = KEY && today < `${CONFIG.YEAR}-12-25`;
+  } else {
+    s.textContent = `Door ${unlocked} opens today`;
+  }
+  const done = Object.keys(logged).length;
+  if (done) s.textContent += ` · you have logged ${done} of 25`;
+}
+function toast(t){ const el=$('toast'); el.textContent=t; el.classList.add('show'); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove('show'), 2600); }
+
+function openDoor(day){
+  const c = $('c'+day);
+  if (day > unlocked){
+    c.classList.remove('shake'); void c.offsetWidth; c.classList.add('shake');
+    toast(`Door ${day} opens on ${day} December ❄`);
+    return;
+  }
+  lastFocus = c.querySelector('.door');
+  const first = !opened.has(day);
+  opened.add(day); store.set('opened', [...opened]);
+  const fetching = api({action:'day', day});
+  c.classList.add('swing');
+  const wait = reduce ? 150 : (first ? 1300 : 700);
+  setTimeout(() => c.classList.add('lift'), reduce ? 0 : 750);
+  setTimeout(() => { if (!reduce) sparkles(c); showModal(day, fetching); }, wait);
+  setTimeout(() => { c.classList.remove('swing','lift'); refreshCells(); }, wait + 400);
+}
+function showModal(day, fetching){
+  current = day;
+  $('mTitle').textContent = `Day ${day}`;
+  $('mTopic').textContent = '';
+  $('mPaper').innerHTML = '<div class="loading">Unwrapping…</div>';
+  $('mUnder').hidden = true;
+  $('veil').classList.add('show'); $('veil').setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  $('mClose').focus();
+  fetching.then(res => {
+    if (current !== day) return;
+    if (!res.ok){
+      $('mPaper').innerHTML = `<div class="loading">${res.error==='locked' ? `This door opens on ${day} December.` : 'This question could not be loaded. Check your connection and open the door again.'}</div>`;
+      return;
+    }
+    const q = res.question;
+    $('mTitle').textContent = `Day ${day}: ${q.title}`;
+    $('mTopic').textContent = `${q.topic} (${q.marks} marks)`;
+    $('mPaper').innerHTML = `<div class="xq"><div class="qnum">${day}</div>${q.question}</div>`;
+    $('hintText').textContent = q.hint || '';
+    $('hintText').hidden = true; $('hintBtn').textContent = 'Show hint'; $('hintBtn').setAttribute('aria-expanded','false');
+    $('nameIn').value = store.get('name', '');
+    $('msg').textContent = ''; $('msg').className = 'msg';
+    if (logged[day]) {
+      $('solution').innerHTML = '<h3>Mark scheme</h3>' + logged[day];
+      $('solution').hidden = false;
+      $('checkin').hidden = true;
+    } else {
+      $('solution').hidden = true; $('checkin').hidden = false;
+    }
+    $('mUnder').hidden = false;
+  }).catch(() => {
+    $('mPaper').innerHTML = '<div class="loading">This question could not be loaded. Check your connection and open the door again.</div>';
+  });
+}
+function closeModal(){
+  $('veil').classList.remove('show'); $('veil').setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  current = null; refreshCells(); setStatus();
+  if (lastFocus) lastFocus.focus();
+}
+$('mClose').addEventListener('click', closeModal);
+$('veil').addEventListener('click', e => { if (e.target === $('veil')) closeModal(); });
+document.addEventListener('keydown', e => {
+  if (!$('veil').classList.contains('show')) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Tab'){
+    const f = [...$('dialog').querySelectorAll('button,input,[tabindex]')].filter(x => !x.closest('[hidden]') && !x.disabled);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length-1];
+    if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  }
+});
+$('hintBtn').addEventListener('click', () => {
+  const h = $('hintText'); h.hidden = !h.hidden;
+  $('hintBtn').textContent = h.hidden ? 'Show hint' : 'Hide hint';
+  $('hintBtn').setAttribute('aria-expanded', String(!h.hidden));
+});
+$('checkin').addEventListener('submit', e => {
+  e.preventDefault();
+  const day = current, name = $('nameIn').value.trim();
+  const msg = $('msg');
+  if (!name){ msg.className='msg err'; msg.textContent='Type your first name first.'; return; }
+  $('logBtn').disabled = true; msg.className='msg'; msg.textContent='Logging…';
+  apiPost({day, name}).then(res => {
+    $('logBtn').disabled = false;
+    if (!res.ok){
+      msg.className = 'msg err';
+      msg.textContent = res.error === 'bad-name' ? 'Please use just your first name (letters only), with a surname initial if you like.'
+        : res.error === 'locked' ? 'This door is not open yet.' : 'That did not log. Try again in a moment.';
+      return;
+    }
+    store.set('name', res.name);
+    logged[day] = res.solution; store.set('logged', logged);
+    msg.className = 'msg ok'; msg.textContent = `Nice one, ${res.name}! Logged for day ${day}.`;
+    $('solution').innerHTML = '<h3>Mark scheme</h3>' + res.solution;
+    $('solution').hidden = false;
+    if (!reduce) sparkles($('logBtn'), 40);
+    setTimeout(() => { $('checkin').hidden = true; }, 2200);
+    $('solution').scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+  }).catch(() => { $('logBtn').disabled = false; msg.className='msg err'; msg.textContent='No connection. Check your internet and try again.'; });
+});
+
+function sparkles(el, n=26){
+  const r = el.getBoundingClientRect(), cx = r.left + r.width/2, cy = r.top + r.height/2;
+  const cols = ['#e0ae4a','#fbfaf7','#b3243b','#f5d27a'];
+  for (let i=0;i<n;i++){
+    const s = document.createElement('span'); s.className='sparkle';
+    s.style.background = cols[i%cols.length]; s.style.left = cx+'px'; s.style.top = cy+'px';
+    document.body.appendChild(s);
+    const a = Math.random()*Math.PI*2, d = 60 + Math.random()*110;
+    s.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px) scale(.2)`,opacity:0}],
+      {duration:900+Math.random()*500, easing:'cubic-bezier(.2,.7,.3,1)'}).onfinish = () => s.remove();
+  }
+}
+
+function lights(){
+  const svg = $('lights'), w = Math.max(innerWidth, 400), n = Math.round(w/46);
+  const cols = ['#e0ae4a','#b3243b','#7fd1ae','#fbfaf7'];
+  let path = 'M0 8', bulbs = '';
+  for (let i=0;i<=n;i++){
+    const x = i*w/n; path += ` Q ${x - w/n/2} 26 ${x} 8`;
+    if (i>0) bulbs += `<g class="bulb" style="animation-delay:${(i%5)*0.45}s"><rect x="${x - w/n/2 - 2}" y="17" width="4" height="5" fill="#2b3b35"/><ellipse cx="${x - w/n/2}" cy="29" rx="5" ry="8" fill="${cols[i%4]}"/></g>`;
+  }
+  svg.setAttribute('viewBox', `0 0 ${w} 46`);
+  svg.innerHTML = `<path d="${path}" fill="none" stroke="#0a1712" stroke-width="2"/>${bulbs}`;
+}
+function snow(){
+  if (reduce) return;
+  const c = $('snow'), x = c.getContext('2d'); let flakes = [];
+  const size = () => { c.width = innerWidth; c.height = innerHeight;
+    flakes = Array.from({length: Math.min(90, Math.round(innerWidth/14))}, () => ({x:Math.random()*c.width, y:Math.random()*c.height, r:1+Math.random()*2.4, s:.3+Math.random()*.8, d:Math.random()*Math.PI*2})); };
+  size(); addEventListener('resize', size);
+  (function tick(){
+    x.clearRect(0,0,c.width,c.height); x.fillStyle='rgba(255,255,255,.75)';
+    for (const f of flakes){ f.y += f.s; f.d += .01; f.x += Math.sin(f.d)*.4;
+      if (f.y > c.height+4){ f.y = -4; f.x = Math.random()*c.width; }
+      x.beginPath(); x.arc(f.x,f.y,f.r,0,Math.PI*2); x.fill(); }
+    requestAnimationFrame(tick);
+  })();
+}
+
+buildBoard(); lights(); addEventListener('resize', lights); snow();
+api({action:'status'}).then(res => {
+  unlocked = res.unlocked || 0; today = res.today || '';
+  refreshCells(); setStatus();
+}).catch(() => { $('status').textContent = 'Could not reach the calendar. Check your connection and refresh.'; refreshCells(); });
+</script>
+</body>
+</html>
